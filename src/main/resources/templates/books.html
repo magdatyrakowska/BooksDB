@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<title>books</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<body>
+
+<div class="w3-container">
+    <div class="w3-bar w3-border w3-light-grey">
+        <div class="w3-bar-item w3-teal" ><a href="/books">All books</a></div>
+        <div class="w3-bar-item"><a href="/books/add">Add a book</a></div>
+    </div>
+</div>
+
+<div class="w3-container">
+    <h2>All Books</h2>
+    <p>The table contains all books in DB.</p>
+
+    <table class="w3-table-all">
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Published</th>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr th:each="book : ${books}">
+            <td th:text="${book.id}"/>
+            <td th:text="${book.title}"/>
+            <td th:text="${book.author}"/>
+            <td th:text="${book.published}"/>
+            <td><a th:href="@{/books/edit(id=${book.id})}">edit</a></td>
+            <td><a th:href="@{/books/delete(id=${book.id})}">delete</a></td>
+        </tr>
+    </table>
+</div>
+
+
+</body>
+</html>
