@@ -13,17 +13,30 @@
 <form method="post" class="w3-container w3-card-4" action="/books/save" th:object="${bookEdit}">
     <h2>Edit a book</h2>
     <p>Insert data about your book.</p>
+
+    <div class="w3-panel w3-pale-red w3-border" th:if="${#fields.hasErrors()}">
+        <b>Correct invalid data and try again.</b>
+    </div>
     <p>
-        <input th:field="*{id}" name="id" type="hidden"></p></p>
+        <input th:field="*{id}" name="id" type="hidden"></p>
     <p>
         <b>Title</b>
         <input th:field="*{title}" class="w3-input w3-border" name="title" type="text"></p>
     <p>
+        <div class="w3-panel w3-pale-red w3-border" th:if="${#fields.hasErrors('title')}" th:errors="*{title}">
+        Book must have a title.</div></p>
+    <p>
         <b>Author</b>
         <input th:field="*{author}" class="w3-input w3-border" name="author" type="text"></p>
     <p>
+        <div class="w3-panel w3-pale-red w3-border" th:if="${#fields.hasErrors('author')}" th:errors="*{author}">
+        Book must have an author.</div></p>
+    <p>
         <b>Published</b>
         <input th:field="*{published}" class="w3-input w3-border" name="published" type="text"></p>
+    <p>
+        <div class="w3-panel w3-pale-red w3-border" th:if="${#fields.hasErrors('published')}" th:errors="*{published}">
+        Year must be composed of 4 numbers.</div></p>
     <p>
         <button class="w3-btn w3-grey">Save</button>
     </p>

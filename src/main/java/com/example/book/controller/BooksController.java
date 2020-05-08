@@ -6,18 +6,22 @@ import com.example.book.entities.Book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import javax.validation.Valid;
+
 
 @Controller
 @RequestMapping("/books")
 public class BooksController {
 
-    @Autowired
     BooksService service;
+
+    @Autowired
+    public BooksController(BooksService service){
+        this.service = service;
+    }
 
     @GetMapping
     public String showAll(Model model) {
@@ -39,9 +43,13 @@ public class BooksController {
     }
 
     @PostMapping("/save")
-    public String saveBook(@ModelAttribute("bookEdit") Book book) {
-        service.saveBook(book);
-        return"redirect:/books";
+    public String saveBook(@Valid @ModelAttribute("bookEdit") Book book, Errors errors) {
+        if(errors.hasErrors()) {
+            return "bookEdit";
+        } else {
+            service.saveBook(book);
+            return "redirect:/books";
+        }
     }
 
     @GetMapping("/delete")
