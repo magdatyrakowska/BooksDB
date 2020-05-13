@@ -1,42 +1,52 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org">
+
 <title>books - edit</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
 <body>
 <div class="w3-container">
     <div class="w3-bar w3-border w3-light-grey">
-        <div class="w3-bar-item"><a href="/books">All books</a></div>
-        <div class="w3-bar-item w3-teal"><a href="/books/add">Add a book</a></div>
+        <div class="w3-bar-item"><a th:href="@{/books}">All books</a></div>
+        <div class="w3-bar-item w3-teal"><a th:href="@{/books/add}">Add a book</a></div>
     </div>
 </div>
-<form method="post" class="w3-container w3-card-4" action="/books/save" th:object="${bookEdit}">
+
+<form method="post" class="w3-container w3-card-4" th:action="@{/books/save}" th:object="${bookEdit}">
     <h2>Edit a book</h2>
-    <p>Insert data about your book.</p>
+    <p>Complete data in the form.</p>
 
     <div class="w3-panel w3-pale-red w3-border" th:if="${#fields.hasErrors()}">
         <b>Correct invalid data and try again.</b>
     </div>
     <p>
-        <input th:field="*{id}" name="id" type="hidden"></p>
+        <input th:field="*{id}" name="id" type="hidden">
+    </p>
     <p>
-        <b>Title</b>
-        <input th:field="*{title}" class="w3-input w3-border" name="title" type="text"></p>
-    <p>
+        <label for="title"><b>Title</b></label>
+        <input id="title" th:field="*{title}" class="w3-input w3-border" name="title" type="text">
+
         <div class="w3-panel w3-pale-red w3-border" th:if="${#fields.hasErrors('title')}" th:errors="*{title}">
-        Book must have a title.</div></p>
+            Book must have a title.
+        </div>
+    </p>
     <p>
-        <b>Author</b>
-        <input th:field="*{author}" class="w3-input w3-border" name="author" type="text"></p>
-    <p>
+        <label for="author"><b>Author</b></label>
+        <input id="author" th:field="*{author}" class="w3-input w3-border" name="author" type="text">
+
         <div class="w3-panel w3-pale-red w3-border" th:if="${#fields.hasErrors('author')}" th:errors="*{author}">
-        Book must have an author.</div></p>
+            Book must have an author.
+        </div>
+    </p>
     <p>
-        <b>Published</b>
-        <input th:field="*{published}" class="w3-input w3-border" name="published" type="text"></p>
-    <p>
+        <label for="published"><b>Published</b></label>
+        <input id="published" th:field="*{published}" class="w3-input w3-border" name="published" type="number">
+
         <div class="w3-panel w3-pale-red w3-border" th:if="${#fields.hasErrors('published')}" th:errors="*{published}">
-        Year must be composed of 4 numbers.</div></p>
+            Year must be 4 digits number.
+        </div>
+    </p>
     <p>
         <button class="w3-btn w3-grey">Save</button>
     </p>

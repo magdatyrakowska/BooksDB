@@ -23,6 +23,7 @@ public class Book {
     private String title;
     @NotBlank(message = "Book must have an author.")
     private String author;
+   // private Genre genre;
     @Pattern(regexp="^[12][0-9]{3}$",
             message="Year must be composed of 4 numbers.")
     private String published;
