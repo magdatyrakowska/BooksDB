@@ -27,7 +27,7 @@
         <label for="title"><b>Title</b></label>
         <input id="title" th:field="*{title}" class="w3-input w3-border" name="title" type="text">
 
-        <div class="w3-panel w3-pale-red w3-border" th:if="${#fields.hasErrors('title')}" th:errors="*{title}">
+        <div class="w3-panel w3-pale-red w3-border" th:if="${#fields.hasErrors('title')}" th:errors="*{title}" placeholder="i.e. Finnegans Wake">
             Book must have a title.
         </div>
     </p>
@@ -35,15 +35,25 @@
         <label for="author"><b>Author</b></label>
         <input id="author" th:field="*{author}" class="w3-input w3-border" name="author" type="text">
 
-        <div class="w3-panel w3-pale-red w3-border" th:if="${#fields.hasErrors('author')}" th:errors="*{author}">
+        <div class="w3-panel w3-pale-red w3-border" th:if="${#fields.hasErrors('author')}" th:errors="*{author}" placeholder="i.e. James Joyce">
             Book must have an author.
         </div>
+    </p>
+    <p>
+        <label for="genre"><b>Genre</b></label>
+        <select id="genre" th:field="*{genre}" class="w3-select" name="genre" type="text">
+            <option th:each="gnr : ${allGenres}" th:value="${gnr}" th:text="${gnr.name}">other</option>
+        </select>
+
+    <div class="w3-panel w3-pale-red w3-border" th:if="${#fields.hasErrors('genre')}" th:errors="*{genre}">
+        Book must be assigned to one of genres.
+    </div>
     </p>
     <p>
         <label for="published"><b>Published</b></label>
         <input id="published" th:field="*{published}" class="w3-input w3-border" name="published" type="number">
 
-        <div class="w3-panel w3-pale-red w3-border" th:if="${#fields.hasErrors('published')}" th:errors="*{published}">
+        <div class="w3-panel w3-pale-red w3-border" th:if="${#fields.hasErrors('published')}" th:errors="*{published}" placeholder="1939">
             Year must be 4 digits number.
         </div>
     </p>

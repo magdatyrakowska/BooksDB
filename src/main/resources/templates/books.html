@@ -21,6 +21,7 @@
             <th>Id</th>
             <th>Title</th>
             <th>Author</th>
+            <th>Genre</th>
             <th>Published</th>
             <th></th>
             <th></th>
@@ -29,6 +30,7 @@
             <td th:text="${book.id}"/>
             <td th:text="${book.title}"/>
             <td th:text="${book.author}"/>
+            <td th:text="${book.genre.name}"/>
             <td th:text="${book.published}"/>
             <td><a th:href="@{/books/edit(id=${book.id})}">edit</a></td>
             <td><a th:href="@{/books/delete(id=${book.id})}">delete</a></td>
